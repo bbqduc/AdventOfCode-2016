@@ -1,7 +1,7 @@
 // Task description at http://adventofcode.com/2016/day/1
 
 #include <cstdio>
-#include <cmath>
+#include <cstdlib>
 #include <set>
 
 struct Vec2D {
@@ -15,7 +15,9 @@ bool operator<(const Vec2D &v1, const Vec2D &v2) {
 }
 
 int main() {
-  std::set<Vec2D> visited; // TODO : might be nicer to do some kind of line-segment intersection calculation instead of just storing all points
+  std::set<Vec2D> visited; // TODO : might be nicer to do some kind of
+                           // line-segment intersection calculation instead of
+                           // just storing all points
   Vec2D pos, dir(0, 1);
   bool repeated = false;
 
@@ -40,12 +42,15 @@ int main() {
           repeated = true;
           visited.clear();
           printf("First repeat visit: (%d,%d)\n", pos.x, pos.y);
-          printf("Manhattan distance: %d\n", std::abs(pos.x) + std::abs(pos.y));
+          printf("Manhattan distance: %d\n", abs(pos.x) + abs(pos.y));
         }
       }
+    } else {
+      pos.x += dir.x * distance;
+      pos.y += dir.y * distance;
     }
   }
 
   printf("Final position: (%d,%d)\n", pos.x, pos.y);
-  printf("Manhattan distance: %d\n", std::abs(pos.x) + std::abs(pos.y));
+  printf("Manhattan distance: %d\n", abs(pos.x) + abs(pos.y));
 }
